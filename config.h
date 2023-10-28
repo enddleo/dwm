@@ -9,8 +9,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=14",
-					                              "WenQuanYi Micro Hei:size=14:type=Regular:antialias=true:autohint=true",
-				                              	"FiraCode Nerd Font Mono Ret:pixelsize=26:type=Retina:antialias=true:autohint=true"};
+					"SourceHanSansCN-Regular:size=14:type=Regular:antialias=true:autohint=true",
+				        "FiraCode Nerd Font Mono Ret:pixelsize=26:type=Retina:antialias=true:autohint=true"};
 static const char dmenufont[]       = "monospace:size=14";
 static unsigned int baralpha	      = 0xd0;
 static unsigned int borderalpha	    = OPAQUE;
@@ -70,20 +70,22 @@ static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static const char *edge[] = { "microsoft-edge-stable", NULL };
-static const char *fluent[]  = { "fluent-reader", NULL };
+//static const char *fluent[]  = { "fluent-reader", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key               		  function        argument */
-	{ MODKEY,			                  XK_e,	   		            spawn,	        {.v = edge } },
-	{ MODKEY,			                  XK_r,	   		            spawn,	        {.v = fluent } },
+	{ MODKEY,			XK_e,	   		          spawn,	  {.v = edge } },
+//	{ MODKEY,			XK_r,	   		          spawn,	  {.v = fluent } },
 	{ MODKEY,                       XK_p,      		          spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,	            XK_Return, 		          spawn,          {.v = termcmd } },
-	{ 0,			                    	XK_Print,  		          spawn,	        SHCMD("flameshot gui") },
-	{ 0,				                    XF86XK_AudioLowerVolume,spawn,          SHCMD("amixer sset Master 2%-") },
-	{ 0,				                    XF86XK_AudioMute,       spawn,          SHCMD("amixer sset Master toggle") },
-	{ 0,                  	        XF86XK_AudioRaiseVolume,spawn,          SHCMD("amixer sset Master 2%+") },
-	{ 0,			                    	XF86XK_AudioMicMute,	  spawn,	        SHCMD("amixer sset Capture toggle") },
-	{ MODKEY,                 			XK_grave,  		          togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,	        XK_Return, 		          spawn,          {.v = termcmd } },
+	{ 0,			        XK_Print,  		          spawn,	  SHCMD("flameshot gui") },
+	{ 0,				XF86XK_AudioLowerVolume,	  spawn,          SHCMD("amixer sset Master 2%-") },
+	{ 0,				XF86XK_AudioMute,      		  spawn,          SHCMD("amixer sset Master toggle") },
+	{ 0,                  	        XF86XK_AudioRaiseVolume,	  spawn,          SHCMD("amixer sset Master 2%+") },
+	{ 0,			        XF86XK_AudioMicMute,	  	  spawn,	  SHCMD("amixer sset Capture toggle") },
+	{ 0,				XF86XK_MonBrightnessUp,		  spawn,	  SHCMD("xbacklight -inc 10") },
+	{ 0,				XF86XK_MonBrightnessDown,	  spawn,	  SHCMD("xbacklight -dec 10") },
+	{ MODKEY,                 	XK_grave,  		          togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      	        	  togglebar,      {0} },
 	{ MODKEY,                       XK_j,      		          focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,              		  focusstack,     {.i = -1 } },
@@ -91,20 +93,20 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,  	  		          incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      		          setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      	        	  setmfact,       {.f = +0.05} },
-	{ MODKEY,	                      XK_Return,		          zoom,           {0} },
+	{ MODKEY,	                XK_Return,		          zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    		          view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,     		          killclient,     {0} },
 	{ MODKEY,                       XK_t,      		          setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,             		  setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,    		            setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,    		          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_f,      		          fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  		          setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space, 		          togglefloating, {0} },
-	{ MODKEY,                       XK_0,    		            view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,    		            tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_0,    		          view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,    		          tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  		          focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, 		          focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,		            tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_comma,		          tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,		          tagmon,         {.i = +1 } },
 	TAGKEYS(                        XK_1,                      			  0)
 	TAGKEYS(                        XK_2,                      			  1)
